@@ -31,4 +31,18 @@ class EventTest < ActiveSupport::TestCase
   #   end
   # end
 
+  # mock
+  # test '#created_by? owner_id と 引数の#id が同じとき(mock)' do
+  #   event = FactoryBot.create(:event)
+  #   user = MiniTest::Mock.new.expect(:id, event.owner_id) #((1))
+  #   assert_equal(true, event.created_by?(user))
+  #   user.verify #((2))
+  # end
+  # test '#created_by? owner_id と 引数の#id が異なるとき(mock)' do
+  #   event = FactoryBot.create(:event)
+  #   user = MiniTest::Mock.new.expect(:id, -1)
+  #   assert_equal(false, event.created_by?(user))
+  #   user.verify
+  # end
+
 end
