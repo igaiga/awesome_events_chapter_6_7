@@ -45,4 +45,22 @@ class EventTest < ActiveSupport::TestCase
   #   user.verify
   # end
 
+  # validation test
+  test 'start_at_should_be_before_end_at validation OK' do
+    start_at = rand(1..30).days.from_now #((1))
+    end_at = start_at + rand(1..30).hours #((2))
+    event = FactoryBot.build(:event,
+                             start_at: start_at, end_at: end_at) #((3))
+    event.valid? #((4))
+    assert_empty(event.errors[:start_at]) #((5))
+  end
+
+  test 'start_at_should_be_before_end_at validation error' do
+    start_at = rand(1..30).days.from_now
+    end_at = start_at - rand(1..30).hours
+    event = FactoryBot.build(:event,
+                             start_at: start_at, end_at: end_at)
+    event.valid?
+    assert_not_empty(event.errors[:start_at]) #((1))
+  end
 end
